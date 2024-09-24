@@ -1,9 +1,10 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FlightEditComponent } from './flight-edit.component';
 import { FlightService } from '../flight.service';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('FlightEditComponent', () => {
   let component: FlightEditComponent;
@@ -11,10 +12,10 @@ describe('FlightEditComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [FlightEditComponent],
-      imports: [FormsModule, HttpClientTestingModule, RouterTestingModule],
-      providers: [FlightService]
-    })
+    declarations: [FlightEditComponent],
+    imports: [FormsModule, RouterTestingModule],
+    providers: [FlightService, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+})
       .compileComponents();
   }));
 
