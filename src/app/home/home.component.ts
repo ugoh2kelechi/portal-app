@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   }
 
   login(): void {
-    this._userName = 'Max';
+    this._userName = 'Kester';
   }
 
   logout(): void {
